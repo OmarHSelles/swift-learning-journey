@@ -12,8 +12,9 @@ struct ContentView: View {// voy a crear una pantalla
     let hayPlazas = true
     let plazas = 0;
     let profesor = false ;
-
-
+    let alumnos = ["Omar", "Ana", "Pedro", "Lucia", "Maria"];
+    let frutas = ["🍎manzanas","🍐Peras","🍌Platanos","🍊Naranjas","🍇Uvas"]
+    let colores = ["Rojo", "Blanco", "Verde", "Azul", "Morado"]
     
     func saludar(nombre: String) {
         print(("Hola \(nombre)"))
@@ -49,6 +50,21 @@ struct ContentView: View {// voy a crear una pantalla
             if estudiante||profesor{
                 Text("Puede acceder al curso")
             }
+            
+
+            Text("El primer alumno es \(alumnos[0])")
+            
+            ForEach(alumnos, id: \.self){alumno in
+                Text("👨‍🎓\(alumno)" )
+            }
+            ForEach(frutas, id: \.self){fruta in//"Para cada fruta del array de frutas..
+                Text(fruta)
+            }
+            
+            ForEach(colores, id: \.self){color in
+                Text(color)
+            }
+                
 
             
             Text("¡Hola, \(nombre)! 👋")
