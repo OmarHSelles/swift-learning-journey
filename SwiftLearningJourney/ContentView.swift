@@ -9,6 +9,7 @@ struct ContentView: View {// voy a crear una pantalla
     let estudiante = true
     let numero1: Int = 5
     let numero2: Int = 3
+    let hayPlazas = true
 
     
     func saludar(nombre: String) {
@@ -23,6 +24,17 @@ struct ContentView: View {// voy a crear una pantalla
     var body: some View {// a qui dentro se crea la pantalla
         VStack(spacing: 20) {// pila vertical
             
+            if hayPlazas {
+                Text("Hay plazas disponibles")
+            }else{
+                Text("No hay plazas disponibles")
+            }
+            
+            if edad >= 18{
+                Text("Eres mayor de edad")
+            }else{
+                Text("Eres menor de edad")
+            }
 
             
             Text("¡Hola, \(nombre)! 👋")
