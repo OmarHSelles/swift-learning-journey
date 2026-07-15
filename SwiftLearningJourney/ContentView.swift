@@ -6,10 +6,13 @@ struct ContentView: View {// voy a crear una pantalla
     let profesion = "Desarrollador iOS"
     var edad = 39
     let altura = 1.7
-    let estudiante = true
+    let estudiante = true;
     let numero1: Int = 5
     let numero2: Int = 3
     let hayPlazas = true
+    let plazas = 0;
+    let profesor = false ;
+
 
     
     func saludar(nombre: String) {
@@ -34,6 +37,17 @@ struct ContentView: View {// voy a crear una pantalla
                 Text("Eres mayor de edad")
             }else{
                 Text("Eres menor de edad")
+            }
+            
+            if plazas > 10{
+                Text("Hay muchas plazas")
+            }else if plazas > 0{
+                Text("Quedan pocas plazas")
+            }else {
+                Text("No quedan plazas")
+            }
+            if estudiante||profesor{
+                Text("Puede acceder al curso")
             }
 
             
