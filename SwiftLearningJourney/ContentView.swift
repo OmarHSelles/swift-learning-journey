@@ -12,9 +12,23 @@ struct ContentView: View {// voy a crear una pantalla
     let hayPlazas = true
     let plazas = 0;
     let profesor = false ;
-    let alumnos = ["Omar", "Ana", "Pedro", "Lucia", "Maria"];
     let frutas = ["🍎manzanas","🍐Peras","🍌Platanos","🍊Naranjas","🍇Uvas"]
     let colores = ["Rojo", "Blanco", "Verde", "Azul", "Morado"]
+    
+    let alumnos = [
+        Alumno(nombre : "Omar", edad: 39, ciudad: "Alicante", estudiante: true),
+        Alumno(nombre : "Sofía", edad: 28, ciudad: "Barcelona", estudiante: true),
+        Alumno(nombre : "Marta", edad: 22, ciudad: "Madrid", estudiante: false)
+          ]
+    
+    struct Alumno : Hashable  {
+        let nombre: String
+        let edad : Int
+        let ciudad : String
+        let estudiante: Bool
+    }
+    
+    let omar = Alumno(nombre: "Omar", edad: 39, ciudad: "Alicante", estudiante: true)
     
     func saludar(nombre: String) {
         print(("Hola \(nombre)"))
@@ -52,10 +66,21 @@ struct ContentView: View {// voy a crear una pantalla
             }
             
 
-            Text("El primer alumno es \(alumnos[0])")
+            Text("El primer alumno es \(alumnos[0].nombre)")
             
             ForEach(alumnos, id: \.self){alumno in
-                Text("👨‍🎓\(alumno)" )
+                VStack(alignment: .leading){
+                    
+                    Text("👨‍🎓\(alumno.nombre)")
+                    Text("🎂Edad: \(alumno.edad)")
+                    Text("📍\(alumno.ciudad)")
+                    if alumno.estudiante{
+                        Text("🎓 Es estudiante: si")
+                    }else {
+                        Text("🎓 Es estudiante: no")
+                    }
+                    
+                }
             }
             ForEach(frutas, id: \.self){fruta in//"Para cada fruta del array de frutas..
                 Text(fruta)
@@ -64,7 +89,7 @@ struct ContentView: View {// voy a crear una pantalla
             ForEach(colores, id: \.self){color in
                 Text(color)
             }
-                
+            Text("\(omar.nombre) tiene \(omar.edad) años")
 
             
             Text("¡Hola, \(nombre)! 👋")
