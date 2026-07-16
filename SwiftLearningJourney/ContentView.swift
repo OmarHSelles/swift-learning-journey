@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {// voy a crear una pantalla
-    var nombre = "Omar"
-    let ciudad = "Alicante"
+    @State var nombre = "Omar"
+    @State var ciudad = "Alicante"
     let profesion = "Desarrollador iOS"
     var edad = 39
     let altura = 1.7
-    let estudiante = true;
+    @State var estudiante = true;
     let numero1: Int = 5
     let numero2: Int = 3
     let hayPlazas = true
@@ -15,18 +15,13 @@ struct ContentView: View {// voy a crear una pantalla
     let frutas = ["🍎manzanas","🍐Peras","🍌Platanos","🍊Naranjas","🍇Uvas"]
     let colores = ["Rojo", "Blanco", "Verde", "Azul", "Morado"]
     
-    let alumnos = [
+    @State var alumnos = [
         Alumno(nombre : "Omar", edad: 39, ciudad: "Alicante", estudiante: true),
         Alumno(nombre : "Sofía", edad: 28, ciudad: "Barcelona", estudiante: true),
         Alumno(nombre : "Marta", edad: 22, ciudad: "Madrid", estudiante: false)
           ]
     
-    struct Alumno : Hashable  {
-        let nombre: String
-        let edad : Int
-        let ciudad : String
-        let estudiante: Bool
-    }
+  
     
     let omar = Alumno(nombre: "Omar", edad: 39, ciudad: "Alicante", estudiante: true)
     
@@ -82,23 +77,54 @@ struct ContentView: View {// voy a crear una pantalla
                     
                 }
             }
-            ForEach(frutas, id: \.self){fruta in//"Para cada fruta del array de frutas..
+            
+            /*ForEach(frutas, id: \.self){fruta in//"Para cada fruta del array de frutas..
                 Text(fruta)
             }
             
             ForEach(colores, id: \.self){color in
                 Text(color)
             }
+            */
             Text("\(omar.nombre) tiene \(omar.edad) años")
 
             
             Text("¡Hola, \(nombre)! 👋")
+            Button("Cambiar de nombre"){
+                if nombre == "Ana"{
+                   nombre = "Omar"
+                }else {
+                    nombre = "Ana"
+                }
+            }
+            
             Text("Soy de \(ciudad)")
+            Button("Cambiar de ciudad"){
+                if ciudad == "Alicante"{
+                    ciudad = "Madrid"
+                }else {
+                    ciudad = "Alicante"
+                }
+            }
+            
+            if estudiante {
+            Text("🎓 ¿Soy estudiante? Sí")
+             } else {
+               Text("🎓 ¿Soy estudiante? No")
+}
+            Button("Cambiar estudiante"){
+                if estudiante{
+                    estudiante = false
+                }else {
+                    estudiante = true
+                }
+            }
+            
             Text("Quiero trabajar como \(profesion)")
             Text("Tengo \(edad) años")
             Text("\(numero1) + \(numero2) = \(suma(numero1: numero1, numero2: numero2))")
             Text("Mido \(altura) metros")
-            Text("¿Soy estudiante? \(estudiante.description)")
+            
                
 
             Text("Mi viaje para convertirme en desarrollador iOS comienza hoy.")
@@ -128,3 +154,4 @@ struct ContentView: View {// voy a crear una pantalla
 #Preview {
     ContentView()
 }
+
