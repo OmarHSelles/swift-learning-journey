@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ClientesView: View {
+    let clientes = [
+        Cliente(id: 1, nombre: "Omar", apellidos: "Herrera selles", codigoPostal: "03690", dni: "48539942Y", telefono:"675752143", email: "omar@gmail.com"),
+        Cliente(id: 2, nombre: "Ana", apellidos: "Ramos Quiros", codigoPostal: "03690", dni: "48539942Y", telefono: "659478234", email: "ana@gmail.com")
+    ]
     var body: some View {
      
         VStack(spacing: 20){
@@ -16,11 +20,23 @@ struct ClientesView: View {
                 .font(.largeTitle)
                 .bold()
             
-            Text("Aqui aparecen todos los clientes")
+            List{
+                ForEach(clientes, id: \.self){ cliente in
+                    VStack(alignment: .leading){
+                        Text(cliente.nombre)
+                            .bold()
+                        Text(cliente.email)
+                            .font(Font.subheadline)
+                            .foregroundStyle(.secondary)
+                        
+                    }
+                    
+                }
+            }
                 
         }
         
-        .navigationBarTitle("Clientes")
+        .navigationTitle("Clientes")
     }
 }
 
