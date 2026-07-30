@@ -9,8 +9,11 @@ struct ClientesView: View {
     
     var body: some View {
         VStack {
-            Button(" ➕ Agregar Cliente") {
-                clientes.append(Cliente.init(id: 3, nombre: "Nuevo", apellidos: "Cliente", codigoPostal: "03690", dni: "48539942Y", telefono: "659478234", email: "nuevocliente@gmail.com"))
+            NavigationLink {
+                NuevoClientesView(clientes: $clientes)
+            } label: {
+                Text("➕ Agregar Cliente")
+            }
             }
             
             List {
@@ -31,7 +34,7 @@ struct ClientesView: View {
             }
         }
     }
-}
+
 #Preview {
     ClientesView()
 }
