@@ -8,12 +8,16 @@
 import Foundation
 struct Cliente: Codable, Hashable, Identifiable{
     let id: Int
-    let nombre: String
-    let apellidos: String
-    let codigoPostal: String
-    let dni: String
-    let telefono: String
-    let email: String
+    var nombre: String
+    var apellidos: String
+    var codigoPostal: String
+    var dni: String
+    var telefono: String
+    var email: String
+    var direccion: String
+    var ciudad: String
+    var provincia: String
+    var telefonoFijo: String
     
 
 }

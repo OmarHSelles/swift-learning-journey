@@ -4,8 +4,32 @@ struct ClientesView: View {
     @State private var textoBusqueda = ""
     
     @State var clientes = [
-        Cliente(id: 1, nombre: "Omar", apellidos: "Herrera Sellés", codigoPostal: "03690", dni: "48539942Y", telefono: "675752143", email: "omar@gmail.com"),
-        Cliente(id: 2, nombre: "Ana", apellidos: "Ramos Quiros", codigoPostal: "03690", dni: "48539942Y", telefono: "659478234", email: "ana@gmail.com")
+        Cliente(
+            id: 1,
+            nombre: "Omar",
+            apellidos: "Herrera Sellés",
+            codigoPostal: "03690",
+            dni: "48539942Y",
+            telefono: "675752143",
+            email: "omar@gmail.com",
+            direccion: "",
+            ciudad: "",
+            provincia: "",
+            telefonoFijo: ""
+        ),
+        Cliente(
+            id: 1,
+            nombre: "Ana",
+            apellidos: "Ramos Quiros",
+            codigoPostal: "03690",
+            dni: "48539942Y",
+            telefono: "695947823",
+            email: "ana@gmail.com",
+            direccion: "",
+            ciudad: "Alicante",
+            provincia: "",
+            telefonoFijo: ""
+        )
     ]
     
     var clientesFiltrados:[Cliente] {
