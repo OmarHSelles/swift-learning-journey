@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Cliente: Codable, Hashable {
+struct Cliente: Codable, Hashable, Identifiable{
     let id: Int
     let nombre: String
     let apellidos: String

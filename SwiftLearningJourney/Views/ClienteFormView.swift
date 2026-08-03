@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct NuevoClientesView: View {
+struct ClienteFormView: View {
     
     @Binding var clientes: [Cliente]
+    var clienteAEditar: Cliente? = nil
     @Environment(\.dismiss) private var dismiss
 
     
@@ -42,20 +43,35 @@ struct NuevoClientesView: View {
             TextField("DNI", text: $dni)
                 
             Button("Guardar"){
-                if nombre.isEmpty || apellido.isEmpty ||  telefono.isEmpty {
+                if nombre.isEmpty || apellido.isEmpty || telefono.isEmpty {
                     print("Faltan datos obligatorios")
-                }else {
+                } else if let clienteAEditar = clienteAEditar {
+                    // Modo EDITAR
+                    if let index = clientes.firstIndex(where: { $0.id == clienteAEditar.id }) {
+                        clientes[index] = Cliente(id: clienteAEditar.id, nombre: nombre, apellidos: apellido, codigoPostal: codigoPostal, dni: dni, telefono: telefono, email: email)
+                    }
+                    dismiss()
+                } else {
+                    // Modo CREAR
                     let nuevoCliente = Cliente(id: clientes.count + 1, nombre: nombre, apellidos: apellido, codigoPostal: codigoPostal, dni: dni, telefono: telefono, email: email)
                     clientes.append(nuevoCliente)
                     dismiss()
-                    print("Cliente guardado")
                 }
-               
+            }
+            .onAppear {
+                if let cliente = clienteAEditar {
+                    nombre = cliente.nombre
+                    apellido = cliente.apellidos
+                    codigoPostal = cliente.codigoPostal
+                    telefono = cliente.telefono
+                    dni = cliente.dni
+                    email = cliente.email
+                }
             }
 
         }
     }
 }
 #Preview {
-    NuevoClientesView(clientes: .constant([]))
+    ClienteFormView(clientes: .constant([]))
 }

@@ -10,16 +10,15 @@ struct ClientesView: View {
     var body: some View {
         VStack {
             NavigationLink {
-                NuevoClientesView(clientes: $clientes)
+                ClienteFormView(clientes: $clientes)
             } label: {
                 Text("➕ Agregar Cliente")
             }
-            }
             
             List {
-                ForEach(clientes, id: \.self) {cliente in
+                ForEach(clientes) { cliente in
                     NavigationLink {
-                        ClienteDetail(cliente: cliente)
+                        ClienteDetail(cliente: cliente, clientes: $clientes)
                     } label: {
                         VStack(alignment: .leading) {
                             Text("\(cliente.nombre) \(cliente.apellidos)")
@@ -34,7 +33,7 @@ struct ClientesView: View {
             }
         }
     }
-
+}
 #Preview {
     ClientesView()
 }
