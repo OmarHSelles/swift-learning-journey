@@ -1,11 +1,23 @@
 import SwiftUI
 
 struct ClientesView: View {
+    @State private var textoBusqueda = ""
     
     @State var clientes = [
         Cliente(id: 1, nombre: "Omar", apellidos: "Herrera Sellés", codigoPostal: "03690", dni: "48539942Y", telefono: "675752143", email: "omar@gmail.com"),
         Cliente(id: 2, nombre: "Ana", apellidos: "Ramos Quiros", codigoPostal: "03690", dni: "48539942Y", telefono: "659478234", email: "ana@gmail.com")
     ]
+    
+    var clientesFiltrados:[Cliente] {
+        if textoBusqueda.isEmpty {
+            return clientes
+        }else{
+            return clientes.filter{ cliente in
+                cliente.nombre.localizedCaseInsensitiveContains(textoBusqueda) ||
+                cliente.apellidos.localizedCaseInsensitiveContains(textoBusqueda)
+            }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -14,9 +26,11 @@ struct ClientesView: View {
             } label: {
                 Text("➕ Agregar Cliente")
             }
-            
+            TextField("Buscar Cliente", text: $textoBusqueda)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
             List {
-                ForEach(clientes) { cliente in
+                ForEach(clientesFiltrados) { cliente in
                     NavigationLink {
                         ClienteDetail(cliente: cliente, clientes: $clientes)
                     } label: {
