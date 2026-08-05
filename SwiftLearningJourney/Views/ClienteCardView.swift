@@ -13,17 +13,38 @@ struct ClienteCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
 
-            Text("Información del usuario")
-                .font(.headline)
+            HStack {
+                Text("Información del usuario")
+                    .font(.headline)
 
+                Spacer()
+
+                Button("Editar") {
+
+                }
+            }
+            
+            Divider()
+            .padding(.horizontal)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal)
+            
             HStack(alignment: .top, spacing: 16) {
 
-                Text("👤")
-                    .font(.system(size: 55))
-
+                ZStack{
+                    Circle()
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(width: 70, height: 70)
+                    
+                    Text(cliente.iniciales)
+                        .font(Font.system(size: 40, weight: .bold, design: .default))
+                        .bold()
+                    
+                }
                 VStack(alignment: .leading, spacing: 8) {
 
-                    Text("\(cliente.nombre) \(cliente.apellidos)")
+                    Text(cliente.nombreCompleto)
                         .font(.title3)
                         .bold()
 
@@ -33,6 +54,20 @@ struct ClienteCardView: View {
                 }
 
                 Spacer()
+            }
+            
+            Divider()
+                .padding(.horizontal)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.horizontal)
+            
+            HStack {
+                Spacer()
+                
+                Button("Añadir entrada") {
+                    
+                }
             }
         }
         .padding(20)
@@ -48,6 +83,8 @@ struct ClienteCardView: View {
         .shadow(radius: 3)
         .padding(.horizontal)
     }
+    
+
 }
 
 #Preview {

@@ -19,5 +19,18 @@ struct Cliente: Codable, Hashable, Identifiable{
     var provincia: String
     var telefonoFijo: String
     
+    var nombreCompleto: String{
+        
+       return "\(nombre) \(apellidos)"
+        
+    }
+    
+    var iniciales: String {
+        let inicialNombre = String(nombre.first ?? "?")
+        let inicialApellidos = String(apellidos.first ?? "?")
+        
+        return "\(inicialNombre)\(inicialApellidos)"
+    }
+    
 
 }
