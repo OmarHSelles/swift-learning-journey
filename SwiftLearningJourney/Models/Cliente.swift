@@ -21,7 +21,7 @@ struct Cliente: Codable, Hashable, Identifiable{
     
     var nombreCompleto: String{
         
-       return "\(nombre) \(apellidos)"
+        return "\(nombre) \(apellidos)"
         
     }
     
@@ -32,5 +32,20 @@ struct Cliente: Codable, Hashable, Identifiable{
         return "\(inicialNombre)\(inicialApellidos)"
     }
     
-
+    var bonos: [BonoCliente] = []
+    
+    var bonoActivo: BonoCliente? {
+        
+        for bono in bonos {
+            
+            if bono.estado == .activo {
+                
+                return bono
+                
+            }
+        }
+         return nil
+        
+        
+    }
 }
