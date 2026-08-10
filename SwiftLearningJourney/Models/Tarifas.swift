@@ -13,7 +13,33 @@ enum TipoTarifa: String, Codable, CaseIterable {
     case bonoSesiones
     case mensual
     case curso
+    case funcional
+    
+    var nombreMostrar: String {
+
+        switch self {
+
+        case .paseDia:
+            return "Pase de un día"
+
+        case .bonoSesiones:
+            return "Bono de sesiones"
+
+        case .mensual:
+            return "Mensual"
+
+        case .curso:
+            return "Curso"
+            
+        case .funcional:
+            return "Funcional"
+            
+
+        }
+
+    }
 }
+
 
 enum UnidadDuracion: String, Codable, CaseIterable {
     case dias
@@ -22,7 +48,7 @@ enum UnidadDuracion: String, Codable, CaseIterable {
 
 struct Tarifa: Identifiable, Hashable, Codable {
 
-    let id: Int
+   var id: Int
 
     var nombre: String
     var precio: Double
@@ -46,6 +72,7 @@ struct Tarifa: Identifiable, Hashable, Codable {
                                        value: dias,
                                        to: fechaInicio)!
         }
+        
 
         if let meses = numeroMeses {
             fechaFin = calendario.date(byAdding: .month,
@@ -64,5 +91,22 @@ struct Tarifa: Identifiable, Hashable, Codable {
             precioPagado: precio
         )
     }
+    
+    static func nueva() -> Tarifa{
+        
+            Tarifa(
+            id: 0,
+            nombre: "",
+            precio: 0.0,
+            tipo: .paseDia,
+            numeroDias: nil,
+            numeroMeses: nil,
+            numeroSesiones: nil
+        )
+        
+       
+        
+    }
+
 }
 

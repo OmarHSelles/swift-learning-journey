@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import Combine
 
-struct TarifasRepository {
+final class TarifasRepository: ObservableObject {
 
-    static let tarifas: [Tarifa] = [
-
+    @Published var tarifas: [Tarifa] = [
+        
         Tarifa(
             id: 1,
             nombre: "Pase de un día",
-            precio: 10,
+            precio: 7,
             tipo: .paseDia,
             numeroDias: 1,
             numeroMeses: nil,
@@ -35,7 +36,7 @@ struct TarifasRepository {
         Tarifa(
             id: 3,
             nombre: "Bono mensual",
-            precio: 45,
+            precio: 38,
             tipo: .mensual,
             numeroDias: nil,
             numeroMeses: 1,
@@ -45,5 +46,41 @@ struct TarifasRepository {
         )
 
     ]
+    
+  func siguienteId() -> Int {
 
+        guard let ultimoId = tarifas.map(\.id).max() else {
+            return 1
+        }
+
+        return ultimoId + 1
+
+    }
+    
+    
+     func añadir(_ tarifa: Tarifa) {
+
+        var nuevaTarifa = tarifa
+
+        nuevaTarifa.id = siguienteId()
+
+        tarifas.append(nuevaTarifa)
+
+    }
+
+    func actualizar(_ tarifa: Tarifa){
+        
+        if let indice = tarifas.firstIndex(where: { $0.id == tarifa.id }) {
+
+              tarifas[indice] = tarifa
+
+          }
+        
+    }
+
+     func eliminar(_ tarifa: Tarifa){
+        
+        tarifas.removeAll { $0.id == tarifa.id }
+        
+    }
 }

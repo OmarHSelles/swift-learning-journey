@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct SwiftLearningJourneyApp: App {
+    
+    @StateObject private var tarifasRepository = TarifasRepository()
+    
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(tarifasRepository)
         }
     }
 }
